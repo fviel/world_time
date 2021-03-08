@@ -12,11 +12,25 @@ class _ChooseLocationState extends State<ChooseLocation> {
   /**
    * simula um request de tempo variável para usar código assíncrono, pois um ws pode demorar x tempo...
    */
-  void getData(){
-    Future.delayed(Duration(seconds:3), (){
-       print('_ChooseLocationState.getDate.funçãod e delay -------');
+  void getData() async{
+    //chama assincronamente, mas o 'await' define que o reto do método tem que esperar esse aqui primeiro
+    //observe que a função dentro do Future vai retornar uma string pra var nome
+    String nome = await Future.delayed(Duration(seconds:3), (){
+       print('_ChooseLocationState.getDate ------ simula o request com delay 1 -------');
+       return 'fernando';
     });
-    print('mensagem após a função assíncrona ser chamada...');
+
+    //simula o request com delay obtendo a bio
+    Future.delayed(Duration(seconds:3), (){
+      print('_ChooseLocationState.getDate ------ simula o request com delay 2 - aguarda o 1 -------');
+    });
+
+    //simula o request com delay obtendo a bio
+    Future.delayed(Duration(seconds:3), (){
+      print('_ChooseLocationState.getDate ------ simula o request com delay 3 - aguarda o 1 -------');
+    });
+
+    print('mensagem após a função assíncrona ser chamada... $nome');
   }
   /**
    *  // initState roda uma única vez, ao instanciar o widget
@@ -27,6 +41,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
     super.initState();
     print('_ChooseLocationState.initState executou---------');
     getData();
+    print('método após o getData() async');
   }
 
 
