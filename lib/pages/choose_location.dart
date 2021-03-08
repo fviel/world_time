@@ -8,6 +8,16 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
 
   int counter = 0;
+
+  /**
+   * simula um request de tempo variável para usar código assíncrono, pois um ws pode demorar x tempo...
+   */
+  void getData(){
+    Future.delayed(Duration(seconds:3), (){
+       print('_ChooseLocationState.getDate.funçãod e delay -------');
+    });
+    print('mensagem após a função assíncrona ser chamada...');
+  }
   /**
    *  // initState roda uma única vez, ao instanciar o widget
    */
@@ -16,6 +26,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
 
     super.initState();
     print('_ChooseLocationState.initState executou---------');
+    getData();
   }
 
 
