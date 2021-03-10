@@ -20,6 +20,7 @@ class _LoadingState extends State<Loading> {
       'location':wt.location,
       'flag':wt.flag,
       'time':wt.time,
+      'isDayTime':wt.isDayTime,
     });
     /*setState((){
       time = wt.time;
@@ -40,10 +41,10 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[400],
+      backgroundColor: Colors.grey[900],
       body:Center(
         child: SpinKitWave(
-          color:Colors.amber,
+          color:Colors.grey[500],
           size: 100.0,
 
         )

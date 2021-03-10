@@ -8,6 +8,7 @@ class WorldTime {
   String flag; //url para o assets url flag icon
   String url; //url ond vou buscar o horário - api endpoint
   String urlBase;
+  bool isDayTime;
   
   WorldTime({this.location, this.flag, this.url}) {
     urlBase = 'https://worldtimeapi.org/api/timezone/';
@@ -21,10 +22,18 @@ class WorldTime {
       }
       Response response = await get(urlBase + url);
       Map data = jsonDecode(response.body);
-      String utc_offset = data['utc_offset'].substring(1, 3);
-      int intOffset = int.parse(utc_offset);
+      String utc_offset = data['utc_offset'].substring(0, 3);
+      int intOffset = int.parse(utc_offset.substring(1, 3));
       DateTime horario = DateTime.parse(data['datetime']);
-      //horario.add(Duration(hours: intOffset));
+      if(utc_offset.substring(0,1) == '-'){
+        horario = horario.subtract(Duration(hours: intOffset));
+      }else{
+        horario = horario.add(Duration(hours: intOffset));
+      }
+
+
+      //
+
       //time = horario.toString();
       //time = DateFormat.jm().format(horario);
       // print(DateFormat.jms().format(horario));
@@ -33,6 +42,11 @@ class WorldTime {
       // print(DateFormat.MEd().format(horario));
       // print(DateFormat.yMMMMEEEEd().format(horario));
 
+      //avalia se é dia ou noite
+     // isDayTime = horario.hour > 6 && horario.hour < 20 ? true: false;
+      isDayTime = false;
+      print('hora:');
+          print(horario.hour);
       time = DateFormat.jm().format(horario);
     }catch(e){
       print('ERRO: $e');
