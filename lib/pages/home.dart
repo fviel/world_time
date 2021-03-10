@@ -14,7 +14,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     //dados recebe os argumentos ao abrir esta tela
-    dados = ModalRoute.of(context).settings.arguments;
+   // fique esperto nesse ternário...
+    //sempre rodo o build no ststate, então, se o array de dados estiver preenchido, usa ele, senão roteia pra tela
+    dados = dados.isNotEmpty ? dados : ModalRoute.of(context).settings.arguments ;
+
 
     String definirBackground(){
       // if(dados['isDayTime'] == null){
@@ -57,8 +60,19 @@ class _HomeState extends State<Home> {
               child: Column(
         children: <Widget>[
               FlatButton.icon(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/location');
+                onPressed: () async {
+                  dynamic result = await Navigator.pushNamed(context, '/location');
+                  if(result != null) {
+                    setState(() {
+                      //dados recebe um map
+                      dados = {
+                        'time': result['time'],
+                        'location': result['location'],
+                        'isDayTime': result['isDayTime'],
+                        'flag': result['flag'],
+                      };
+                    });
+                  }
                 },
                 icon: Icon(
                   Icons.edit_location,

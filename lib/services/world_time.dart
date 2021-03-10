@@ -30,10 +30,6 @@ class WorldTime {
       }else{
         horario = horario.add(Duration(hours: intOffset));
       }
-
-
-      //
-
       //time = horario.toString();
       //time = DateFormat.jm().format(horario);
       // print(DateFormat.jms().format(horario));
@@ -41,7 +37,6 @@ class WorldTime {
       // print(DateFormat.d().format(horario));
       // print(DateFormat.MEd().format(horario));
       // print(DateFormat.yMMMMEEEEd().format(horario));
-
       //avalia se é dia ou noite
       isDayTime = horario.hour > 6 && horario.hour < 20 ? true: false;
       //isDayTime = false;
