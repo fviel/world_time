@@ -10,6 +10,10 @@ import 'package:world_time/pages/loading.dart';
 void main() {
   runApp(MaterialApp(
     initialRoute: '/',
+      debugShowCheckedModeBanner: true,
+      /*theme: ThemeData(
+        brightness: Brightness.dark,
+      ),*/
     routes:{
       '/':(context) => Loading(),
       '/home':(context) => Home(),

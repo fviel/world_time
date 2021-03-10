@@ -24,7 +24,7 @@ class WorldTime {
       String utc_offset = data['utc_offset'].substring(1, 3);
       int intOffset = int.parse(utc_offset);
       DateTime horario = DateTime.parse(data['datetime']);
-      horario.add(Duration(hours: intOffset));
+      //horario.add(Duration(hours: intOffset));
       //time = horario.toString();
       //time = DateFormat.jm().format(horario);
       // print(DateFormat.jms().format(horario));
