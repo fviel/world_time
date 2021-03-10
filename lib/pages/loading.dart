@@ -14,6 +14,7 @@ class _LoadingState extends State<Loading> {
     await wt.getTime();
     setState((){
       time = wt.time;
+
     });
   }
 

@@ -13,16 +13,21 @@ class WorldTime {
   }
 
   Future<void> getTime() async {
-    if (url.isEmpty) {
-      url = 'America/Sao_Paulo';
+    try{
+      if (url.isEmpty) {
+        url = 'America/Sao_Paulo';
+      }
+      Response response = await get(urlBase + url);
+      Map data = jsonDecode(response.body);
+      String utc_offset = data['utc_offset'].substring(1, 3);
+      int intOffset = int.parse(utc_offset);
+      DateTime horario = DateTime.parse(data['datetime']);
+      horario.add(Duration(hours: intOffset));
+      time = horario.toString();
+    }catch(e){
+      print('ERRO: $e');
+      time = 'Não foi possível obter o horário';
     }
-    Response response = await get(urlBase + url);
-    Map data = jsonDecode(response.body);
-    String utc_offset = data['utc_offset'].substring(1, 3);
-    int intOffset = int.parse(utc_offset);
-    DateTime horario = DateTime.parse(data['datetime']);
-    horario.add(Duration(hours: intOffset));
-    time = horario.toString();
   }
 }
 
