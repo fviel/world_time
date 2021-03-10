@@ -8,14 +8,22 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  String time = 'loading';
+
   void setupWorldTime() async {
     WorldTime wt = new WorldTime(location: 'Sao_Paulo', flag: 'brasil.png', url: 'America/Sao_Paulo');
     await wt.getTime();
-    setState((){
+    //pushNamed chamaria a próxima rota, mas manteria o widget atual na stack de memória
+    //Navigator.pushNamed(context, '/home');
+    //já  pushReplacementNamed, irá remover o widget atual da stack e colocar o novo
+    Navigator.pushReplacementNamed(context, '/home', arguments:{
+      'location':wt.location,
+      'flag':wt.flag,
+      'time':wt.time,
+    });
+    /*setState((){
       time = wt.time;
 
-    });
+    });*/
   }
 
   /**
@@ -33,7 +41,7 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(50.0),
-        child: Text(time),
+        child: Text('Loading...'),
       ),
     );
   }
