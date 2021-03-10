@@ -43,8 +43,8 @@ class WorldTime {
       // print(DateFormat.yMMMMEEEEd().format(horario));
 
       //avalia se é dia ou noite
-     // isDayTime = horario.hour > 6 && horario.hour < 20 ? true: false;
-      isDayTime = false;
+      isDayTime = horario.hour > 6 && horario.hour < 20 ? true: false;
+      //isDayTime = false;
       print('hora:');
           print(horario.hour);
       time = DateFormat.jm().format(horario);
