@@ -20,9 +20,9 @@ class _HomeState extends State<Home> {
 
 
     String definirBackground(){
-      // if(dados['isDayTime'] == null){
-      //   return 'assets/images/day.png';
-      // }
+      if(dados['isDayTime'] == null){
+        return 'assets/images/day.png';
+      }
       if(dados['isDayTime']){
         return 'assets/images/day.png';
       }

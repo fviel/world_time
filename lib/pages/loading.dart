@@ -9,19 +9,13 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-
   void setupWorldTime() async {
-
     WorldTime wt = new WorldTime(
         url: 'America/Sao_Paulo',
         location: 'São Paulo',
         flag: 'https://www.countryflags.io/br/shiny/32.png');
-
     await wt.getTime();
-
     print('Obteve dados da getTime');
-
-
 
     //pushNamed chamaria a próxima rota, mas manteria o widget atual na stack de memória
     //Navigator.pushNamed(context, '/home');
